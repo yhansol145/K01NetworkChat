@@ -79,6 +79,7 @@ public class MultiServer {
 				
 				//컬렉션의 key는 클라이언트의 대화명이다.
 				String clientName = it.next();
+				
 				//각 클라이언트의 PrintWriter객체를 얻어온다.
 				PrintWriter it_out = 
 						(PrintWriter)clientMap.get(clientName);
