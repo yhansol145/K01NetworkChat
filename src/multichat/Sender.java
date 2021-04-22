@@ -2,6 +2,7 @@ package multichat;
 
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 //클라이언트가 입력한 메세지를 서버로 전송해주는 쓰레드 클래스
@@ -29,7 +30,7 @@ public class Sender extends Thread{
 		
 		try {
 			//최초로 보내는 메세지는 대화명
-			out.println(name);
+			out.println(URLEncoder.encode(name,"UTF-8"));
 			
 			//두번째 부터는 q를 입력하기전까지는 입력한 메세지를 서버로 전송한다.
 			while(out != null) {
@@ -39,7 +40,7 @@ public class Sender extends Thread{
 						break;
 					}
 					else {
-						out.println(s2);
+						out.println(URLEncoder.encode(s2,"UTF-8"));
 					}
 				}
 				catch(Exception e) {

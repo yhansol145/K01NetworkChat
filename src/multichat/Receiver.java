@@ -17,7 +17,7 @@ public class Receiver extends Thread {
 		
 		try {
 			in = new BufferedReader(new
-			InputStreamReader(this.socket.getInputStream()));
+			InputStreamReader(this.socket.getInputStream(), "UTF-8"));
 		}
 		catch(Exception e) {
 			System.out.println("예외>Receiver>생성자:"+ e);
@@ -33,7 +33,11 @@ public class Receiver extends Thread {
 		
 		while(in != null) {
 			try {
-				System.out.println("Thread Receive : "+ in.readLine());
+				String a = in.readLine();
+				if(a==null) 
+					break;
+				else
+					System.out.println("Thread Receive : "+ a);
 			}
 			catch(SocketException e) {
 				System.out.println("SocketException");
