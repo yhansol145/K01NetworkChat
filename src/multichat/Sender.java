@@ -55,3 +55,5 @@ public class Sender extends Thread{
 		}
 	}
 }
+
+//기모
