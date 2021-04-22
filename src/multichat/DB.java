@@ -22,7 +22,6 @@ public class DB {
 		} catch (Exception e) {
 			System.out.println("Oracle 연결시 예외발생");
 			e.printStackTrace();
-			//sys
 		}
 	}
 }
