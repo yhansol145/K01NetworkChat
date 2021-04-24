@@ -167,7 +167,7 @@ public class MultiServer {
 				// 클라이언트의 이름을 읽어온다.
 				name = URLDecoder.decode(in.readLine(), "UTF-8");
 
-				// 중복아이디 처리
+				// 중복아이디 처리띠
 				Iterator<String> compareName = clientMap.keySet().iterator();
 				while (compareName.hasNext()) {
 					String nextName = compareName.next();
