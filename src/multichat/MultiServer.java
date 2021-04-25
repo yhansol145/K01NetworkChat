@@ -227,7 +227,7 @@ public class MultiServer {
 					s = URLDecoder.decode(in.readLine(), "UTF-8");
 					String newSentence = "";
 					String[] arrWord = s.split(" ");
-					for (int i = 0; i < arrWord.length; i++) {
+					for (int i = 1; i < arrWord.length; i++) {
 						for (String a : pWords) {
 							if (arrWord[i].equals(a)) {
 								arrWord[i] = "BAD WORD!!";
@@ -285,3 +285,32 @@ public class MultiServer {
 		}
 	}
 }
+
+
+
+
+
+//public void dataInput() {
+//	try {
+//		String query = "INSERT INTO phonebook_tb VALUES (?, ?, ?)";
+//		
+//		psmt = con.prepareStatement(query);
+//		
+//		Scanner scan = new Scanner(System.in);
+//		System.out.print("이름 : ");
+//		String name = scan.nextLine();
+//		System.out.print("전화번호 : ");
+//		String phonenumber = scan.nextLine();
+//		System.out.print("생년월일 : ");
+//		String birthday = scan.nextLine();
+//		psmt.setString(1, name);
+//		psmt.setString(2, phonenumber);
+//		psmt.setString(3, birthday);
+//		
+//		int affected = psmt.executeUpdate();
+//		System.out.println(affected +"행이 입력되었습니다.");
+//	}
+//	catch(Exception e) {
+//		e.printStackTrace();
+//	}
+//}
