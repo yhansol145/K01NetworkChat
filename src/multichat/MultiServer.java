@@ -21,7 +21,11 @@ interface limitPerson {
 	int ONE = 1, TWO = 2, THREE = 3;
 }
 
-public class MultiServer {
+public class MultiServer extends IConnectImpl {
+
+//	public MultiServer() {
+//		super(ORACLE_DRIVER, "kosmo", "1234");
+//	}
 
 	// 멤버변수
 	static ServerSocket serverSocket = null;
@@ -176,7 +180,7 @@ public class MultiServer {
 						this.interrupt();
 						out.println("중복된 대화명이 있습니다. 꺼지십시오.");
 						System.out.println("중복된 대화명으로 입장을 차단했습니다.");
-						//반납
+						// 반납
 						in.close();
 						out.close();
 						socket.close();
@@ -192,7 +196,7 @@ public class MultiServer {
 						this.interrupt();
 						out.println("당신은 블랙리스트입니다. 꺼지십시오.");
 						System.out.println("블랙리스트 접근을 차단했습니다.");
-						//반납
+						// 반납
 						in.close();
 						out.close();
 						socket.close();
@@ -205,7 +209,7 @@ public class MultiServer {
 					this.interrupt();
 					out.println("채팅방이 가득 찼습니다. 꺼지십시오.");
 					System.out.println("채팅방이 풀방이라 신규 접속을 차단했습니다.");
-					//반납
+					// 반납
 					in.close();
 					out.close();
 					socket.close();
@@ -227,7 +231,7 @@ public class MultiServer {
 					s = URLDecoder.decode(in.readLine(), "UTF-8");
 					String newSentence = "";
 					String[] arrWord = s.split(" ");
-					for (int i = 1; i < arrWord.length; i++) {
+					for (int i = 0; i < arrWord.length; i++) {
 						for (String a : pWords) {
 							if (arrWord[i].equals(a)) {
 								arrWord[i] = "BAD WORD!!";
@@ -281,36 +285,19 @@ public class MultiServer {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
+				// DB처리
+				try {
+					String query = "INSERT INTO chat_talking VALUES (?, ?, ?)";
+
+					psmt = con.prepareStatement(query);
+
+					int affected = psmt.executeUpdate();
+					System.out.println(affected + "행이 입력되었습니다.");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
 }
-
-
-
-
-
-//public void dataInput() {
-//	try {
-//		String query = "INSERT INTO phonebook_tb VALUES (?, ?, ?)";
-//		
-//		psmt = con.prepareStatement(query);
-//		
-//		Scanner scan = new Scanner(System.in);
-//		System.out.print("이름 : ");
-//		String name = scan.nextLine();
-//		System.out.print("전화번호 : ");
-//		String phonenumber = scan.nextLine();
-//		System.out.print("생년월일 : ");
-//		String birthday = scan.nextLine();
-//		psmt.setString(1, name);
-//		psmt.setString(2, phonenumber);
-//		psmt.setString(3, birthday);
-//		
-//		int affected = psmt.executeUpdate();
-//		System.out.println(affected +"행이 입력되었습니다.");
-//	}
-//	catch(Exception e) {
-//		e.printStackTrace();
-//	}
-//}
