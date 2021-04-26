@@ -23,10 +23,6 @@ interface limitPerson {
 
 public class MultiServer extends IConnectImpl {
 
-//	public MultiServer() {
-//		super(ORACLE_DRIVER, "kosmo", "1234");
-//	}
-
 	// 멤버변수
 	static ServerSocket serverSocket = null;
 	static Socket socket = null;
@@ -36,6 +32,7 @@ public class MultiServer extends IConnectImpl {
 
 	// 생성자
 	public MultiServer() {
+//		super("kosmo", "1234");
 		// 클라이언트의 이름과 출력스트림을 저장할 HashMap 컬렉션 생성
 		clientMap = new HashMap<String, PrintWriter>();
 
